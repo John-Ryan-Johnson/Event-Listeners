@@ -5,13 +5,13 @@ const pies = [
   {
     name: 'Dutch Apple Pie',
     imageUrl: 'https://search.chow.com/thumbnail/800/0/www.chowstatic.com/assets/2013/09/30859_Recipeimage_620x413_dutch_apple_pie.jpg',
-    instructor: 'zoeee',
+    instructor: 'zoe',
     iceCream: 'Vanilla',
   },
   {
     name: 'Berry Pie',
     imageUrl: 'https://tastesbetterfromscratch.com/wp-content/uploads/2015/11/Triple_Berry_Pie8.jpg',
-    instructor: 'zoeee',
+    instructor: 'zoe',
     iceCream: 'banana',
   },
   {
@@ -43,21 +43,57 @@ const pies = [
 
 
 const printToDom = (toPrint, divId) => {
-  document.getElementById(divId).innerHTML += toPrint
+  document.getElementById(divId).innerHTML = toPrint
 }
 
 const pieBuilder = (piesArray) => {
+    let htmlString = ''
   for (let i = 0; i < piesArray.length; i++) {
     const pie = piesArray[i]
-    const htmlString = `
-    <div id="pie-card">
+     htmlString += `
+    <div class="card">
       <h2>${pie.name}</h2>
       <img src='${pie.imageUrl}'/>
     </div>
     `
 
-    printToDom(htmlString, 'pie-card');
+    
   }
+  printToDom(htmlString, 'pie-card');
 }
 
-pieBuilder(pies);
+
+
+
+
+document.getElementById('zoe').addEventListener('click', (e) => {
+
+    const selectedPies = []
+    const instructor = e.target.id
+
+    for (let i = 0; i < pies.length; i++) {
+      const pie = pies[i]
+      if (pie.instructor === instructor) {
+        selectedPies.push(pie)
+      }
+    }
+    pieBuilder(selectedPies);
+})
+
+
+document.getElementById('michael').addEventListener('click', (e) => {
+
+  const selectedPies = []
+  const instructor = e.target.id
+
+  for (let i = 0; i < pies.length; i++) {
+    const pie = pies[i]
+    if (pie.instructor === instructor) {
+      selectedPies.push(pie)
+    }
+  }
+  pieBuilder(selectedPies);
+})
+
+    // pieBuilder(pies);
+
